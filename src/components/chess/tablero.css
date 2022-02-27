@@ -1,0 +1,12 @@
+:root {
+    --blancas: #eed5a7;
+    --negras: #5a2e04;
+}
+
+.color-claro {
+    fill: var(--blancas);
+}
+
+.color-oscuro {
+    fill: var(--negras);
+}

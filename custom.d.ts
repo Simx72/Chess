@@ -1,3 +1,16 @@
+declare module AssetModule { 
+  const url: string;
+  export default url;
+  export const style: { readonly [c: string]: string };
+}
+
+declare module "*.svg" { export default AssetModule.default; }
+
+declare module "*.css" { export default AssetModule.style; }
+declare module "*.sass" { export default AssetModule.style; }
+declare module "*.scss" { export default AssetModule.style; }
+
+
 interface Actualizable {
   /**
    * This method is called once per game step while the scene is running.
@@ -19,3 +32,4 @@ interface SceneActualizable extends Actualizable {
    */
   create(): void
 }
+
