@@ -6,5 +6,8 @@ export default class GameO extends Phaser.GameObjects.GameObject implements Actu
 
   scene!: Scene;
 
+  create() {
+    this.scene.add.existing(this)
+  }
   update() { }
 }

@@ -1,2 +1,5 @@
 import Scene from './default';
-export default class Chess extends Scene {}
+import { TableroO } from '../components/chess/Tablero';
+export default class Chess extends Scene {
+  tablero = new TableroO(this);
+}

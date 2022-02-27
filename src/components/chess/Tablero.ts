@@ -93,6 +93,13 @@ export class TableroO extends GameO {
       this._resize();
     })
 
+    this.once(Phaser.GameObjects.Events.ADDED_TO_SCENE, () => {
+      this.scene.add.existing(this.tablero)
+      this.once(Phaser.GameObjects.Events.REMOVED_FROM_SCENE, () => {
+        this.tablero.removeFromDisplayList()
+      })
+    })
+
   }
 
   private _resize() {
