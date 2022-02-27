@@ -1,11 +1,12 @@
-export default class Scene extends Phaser.Scene {
-  /**
-   * This event is emitted on first scene start
-   */
-  preload() { }
+export default class Scene extends Phaser.Scene implements Actualizable {
+
+  preload() {
+    this.children
+  }
   
-  /**
-   * This event is emitted on every scene start
-   */
   create() {}
+
+  update(time: number, delta: number) {
+    this.children.each(item => item?.update(time, delta))
+  }
 }

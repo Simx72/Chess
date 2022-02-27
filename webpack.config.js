@@ -17,6 +17,9 @@ const config = {
     path: path.resolve(__dirname, "dist"),
   },
   resolve: {
+    alias: {
+      'component': './src/components'
+    },
     modules: ['node_modules'],
   },
   devServer: {
