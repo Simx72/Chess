@@ -12,7 +12,8 @@ export const GAMECONFIG: Phaser.Types.Core.GameConfig = {
     height: 800,
     autoCenter: Phaser.Scale.Center.CENTER_BOTH
   },
-  scene: [MainMenu, Game1]
+  scene: [MainMenu, Game1],
+  parent: 'app'
 };
 
 export const GAME = new Phaser.Game(GAMECONFIG);
