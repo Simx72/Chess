@@ -1,7 +1,7 @@
 import GameO from '../GameO';
 import Ficha from './Ficha';
 import Scene from '../../scenes/default';
-import svgTablero from './tablero.svg';
+import asset_tablero_svg from './tablero.svg';
 import './tablero.css';
 
 interface Equipo {
@@ -81,31 +81,32 @@ class Tablero extends Array<Ficha> {
 
 }
 
-export class TableroO extends GameO {
 
-  private _resize() {
-    this.tablero.node.setAttribute('width', this.scene.scale.displaySize.width.toString())
-    this.tablero.node.setAttribute('height', this.scene.scale.displaySize.height.toString())
+export const tablerosvgkey = crypto.getRandomValues(new Uint8Array(3)).join()
+
+
+export class TableroO extends Phaser.GameObjects.DOMElement {
+
+  static preload(scene: Scene) {
+    scene.load.html(tablerosvgkey, asset_tablero_svg);
   }
 
-  create(): void {
-    this.tablero = this.scene.add.dom(0, 0, 'object')
-    this.tablero.node.setAttribute('data', svgTablero);
+  constructor(scene: Scene) {
+    super(scene, 0, 9, 'div')
+    let data = this.scene.cache.html.get(tablerosvgkey);
+    this.setOrigin(0, 0).setHTML(data);
     this._resize();
+    this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize);
+    this.scene.add.existing(this)
+  }
 
-    this.scene.scale.on(Phaser.Scale.Events.RESIZE, () => {
-      this._resize();
-    })
-
-
-    this.once(Phaser.GameObjects.Events.REMOVED_FROM_SCENE, () => {
-      this.tablero.removeFromDisplayList()
-    })
+  private _resize() {
+    this.node.setAttribute('width', this.scene.scale.displaySize.width.toString())
+    this.node.setAttribute('height', this.scene.scale.displaySize.height.toString())
   }
 
   type = 'Tablero';
   array = new Tablero();
-  tablero!: Phaser.GameObjects.DOMElement;
 
 }
 

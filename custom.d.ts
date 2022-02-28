@@ -13,10 +13,6 @@ declare module "*.scss" { export default AssetModule.style; }
 
 interface Actualizable {
   /**
-   * This event is emitted on every scene start
-   */
-  create(): void
-  /**
    * This method is called once per game step while the scene is running.
    * 
    * @param time — The current time. Either a High Resolution Timer value if it comes from Request Animation Frame, or Date.now if using SetTimeout.
@@ -31,5 +27,9 @@ interface SceneActualizable extends Actualizable {
    * This event is emitted on first scene start
    */
   preload(): void;
+  /**
+   * This event is emitted on every scene start
+   */
+  create(): void
 }
 
