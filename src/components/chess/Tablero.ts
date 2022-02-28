@@ -86,7 +86,8 @@ export class TableroO extends Phaser.GameObjects.DOMElement {
   static readonly tablerosvgkey = 'asset_tablero_svg'
 
   constructor(scene: Scene) {
-    super(scene, 0, 9, 'object')
+    super(scene, 0, 9, 'img')
+    // console.log(asset_tablero_svg)
     this.node.setAttribute('data', asset_tablero_svg)
     this.node.setAttribute('type', 'image/svg+xml')
     this.setOrigin(0, 0)
@@ -95,11 +96,11 @@ export class TableroO extends Phaser.GameObjects.DOMElement {
     this.scene.add.existing(this)
   }
 
-  node!: HTMLObjectElement;
+  node!: HTMLImageElement;
 
   private _resize() {
     let { width, height } = this.scene.scale.displaySize;
-    console.log(width, height)
+    // console.log(width, height)
     this.node.setAttribute('width', width.toString())
     this.node.setAttribute('height', height.toString())
     Object.assign(this.node.style, { width, height });
