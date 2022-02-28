@@ -91,7 +91,7 @@ export class TableroO extends Phaser.GameObjects.DOMElement {
     this.node.setAttribute('type', 'image/svg+xml')
     this.setOrigin(0, 0)
     this._resize();
-    this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize);
+    this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
     this.scene.add.existing(this)
   }
 
