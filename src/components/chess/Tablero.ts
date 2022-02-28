@@ -82,16 +82,16 @@ class Tablero extends Array<Ficha> {
 }
 
 
-loadClasses(asset_tablero_svg, styles);
+let svgtableroWithClasses = loadClasses(asset_tablero_svg, styles);
 
 export class TableroO extends Phaser.GameObjects.DOMElement {
 
   constructor(scene: Scene) {
     super(scene, 0, 9, 'div')
-    console.log(asset_tablero_svg)
+    // console.log(svgtableroWithClasses)
     this.setOrigin(0, 0)
       .setClassName(styles.tablero)
-      .setHTML(asset_tablero_svg)
+      .setHTML(svgtableroWithClasses)
     this._resize();
     this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
     this.scene.add.existing(this)

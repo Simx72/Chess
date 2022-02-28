@@ -1,11 +1,13 @@
-export function loadClasses(html: string, styles: {[c:string]: string}) {
+export function loadClasses(html: string, styles: { [c: string]: string }) {
+  let newhtml = html.toString();
   for (const classname in styles) {
-    if (Object.prototype.hasOwnProperty.call(styles, classname)) {
-      const finalclass = styles[classname];
-      html.replace(
-        `class="${classname}"`,
-        `class="${finalclass}"`
-      )
-    }
+    const finalclass = styles[classname];
+    newhtml = newhtml.replace(
+      new RegExp(classname, 'g'),
+      finalclass
+    )
+    // console.log(classname, finalclass, newhtml)
   }
+  // console.log(html, newhtml, styles)
+  return newhtml;
 }
