@@ -83,9 +83,13 @@ class Tablero extends Array<Ficha> {
 
 export class TableroO extends GameO {
 
-  constructor(scene: Scene) {
-    super(scene);
+  private _resize() {
+    this.tablero.node.setAttribute('width', this.scene.scale.displaySize.width.toString())
+    this.tablero.node.setAttribute('height', this.scene.scale.displaySize.height.toString())
+  }
 
+  create(): void {
+    this.tablero = this.scene.add.dom(0, 0, 'object')
     this.tablero.node.setAttribute('data', svgTablero);
     this._resize();
 
@@ -97,16 +101,6 @@ export class TableroO extends GameO {
     this.once(Phaser.GameObjects.Events.REMOVED_FROM_SCENE, () => {
       this.tablero.removeFromDisplayList()
     })
-
-  }
-
-  private _resize() {
-    this.tablero.node.setAttribute('width', this.scene.scale.displaySize.width.toString())
-    this.tablero.node.setAttribute('height', this.scene.scale.displaySize.height.toString())
-  }
-
-  create(): void {
-    this.scene.add.dom(0, 0, 'object')
   }
 
   type = 'Tablero';
