@@ -13,7 +13,9 @@ export const GAMECONFIG: Phaser.Types.Core.GameConfig = {
     autoCenter: Phaser.Scale.Center.CENTER_BOTH
   },
   scene: [MainMenu, Game1],
-  parent: 'app'
+  parent: 'app',
+  dom: { createContainer: true },
+  transparent: true
 };
 
 export const GAME = new Phaser.Game(GAMECONFIG);
