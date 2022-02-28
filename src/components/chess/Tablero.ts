@@ -1,4 +1,3 @@
-import GameO from '../GameO';
 import Ficha from './Ficha';
 import Scene from '../../scenes/default';
 import asset_tablero_svg from './tablero.svg';
