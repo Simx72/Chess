@@ -1,5 +1,20 @@
-@use "../../mixins" as m;
+@use "../../mixins"as m;
 
 div.tablero {
     @include m.no-margin;
+}
+
+:root {
+    --blancas: #eed5a7;
+    --negras: #5a2e04;
+}
+
+.color {
+    &-claro {
+        fill: var(--blancas);
+    }
+
+    &-oscuro {
+        fill: var(--negras);
+    }
 }

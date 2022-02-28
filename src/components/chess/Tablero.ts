@@ -2,7 +2,6 @@ import Ficha from './Ficha';
 import Scene from '../../scenes/default';
 import asset_tablero_svg from './tablero.svg';
 import styles from './tablero.module.scss';
-import './tablero.css';
 
 interface Equipo {
   enrocar: {
@@ -84,18 +83,12 @@ class Tablero extends Array<Ficha> {
 
 export class TableroO extends Phaser.GameObjects.DOMElement {
 
-  static readonly tablerosvgkey = 'asset_tablero_svg'
-
-  static preload(scene: Scene) {
-    scene.load.html(this.tablerosvgkey, asset_tablero_svg);
-  }
-
   constructor(scene: Scene) {
     super(scene, 0, 9, 'div')
     // console.log(asset_tablero_svg)
     this.setOrigin(0, 0)
       .setClassName(styles.tablero)
-      .setHTML(this.scene.cache.html.get(TableroO.tablerosvgkey))
+      .setHTML(asset_tablero_svg)
     this._resize();
     this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
     this.scene.add.existing(this)
@@ -104,11 +97,9 @@ export class TableroO extends Phaser.GameObjects.DOMElement {
   node!: HTMLDivElement;
 
   private _resize() {
-    let { width, height } = this.scene.scale.displaySize;
-    // console.log(width, height)
-    // this.node.setAttribute('width', width.toString())
-    // this.node.setAttribute('height', height.toString())
-    Object.assign(this.node.style, { width, height });
+    for (const prop of ['width', 'height'] as ('width' | 'height')[]) {
+      this.node.style[prop] = this.scene.scale.displaySize[prop] + 'px';
+    }
   }
 
   type = 'Tablero';
