@@ -2,6 +2,7 @@ import Ficha from './Ficha';
 import Scene from '../../scenes/default';
 import asset_tablero_svg from './tablero.svg';
 import styles from './tablero.module.scss';
+import { loadClasses } from '../styles';
 
 interface Equipo {
   enrocar: {
@@ -81,11 +82,13 @@ class Tablero extends Array<Ficha> {
 }
 
 
+loadClasses(asset_tablero_svg, styles);
+
 export class TableroO extends Phaser.GameObjects.DOMElement {
 
   constructor(scene: Scene) {
     super(scene, 0, 9, 'div')
-    // console.log(asset_tablero_svg)
+    console.log(asset_tablero_svg)
     this.setOrigin(0, 0)
       .setClassName(styles.tablero)
       .setHTML(asset_tablero_svg)

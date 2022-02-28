@@ -1,10 +1,11 @@
 declare module AssetModule { 
-  const url: string;
-  export default url;
+  const content: string;
+  export default content;
   export const style: { readonly [c: string]: string };
 }
 
 declare module "*.svg" { export default AssetModule.default; }
+declare module "*.html" { export default AssetModule.default; }
 
 declare module "*.css" { export default AssetModule.style; }
 declare module "*.sass" { export default AssetModule.style; }
