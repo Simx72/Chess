@@ -50,12 +50,16 @@ const config = {
         use: [stylesHandler, "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(html|svg)$/i,
+        test: /\.html$/i,
         loader: "html-loader"
       },
       {
         test: /\.(eot|ttf|woff|woff2|png|jpg|gif)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.svg$/i,
+        type: "asset/source",
       },
 
       // Add your rules for custom modules here
