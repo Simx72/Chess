@@ -81,18 +81,17 @@ class Tablero extends Array<Ficha> {
 }
 
 
-export const tablerosvgkey = crypto.getRandomValues(new Uint8Array(3)).join()
-
-
 export class TableroO extends Phaser.GameObjects.DOMElement {
+  
+  static readonly tablerosvgkey = 'asset_tablero_svg'
 
   static preload(scene: Scene) {
-    scene.load.html(tablerosvgkey, asset_tablero_svg);
+    scene.load.html(TableroO.tablerosvgkey, asset_tablero_svg);
   }
 
   constructor(scene: Scene) {
     super(scene, 0, 9, 'div')
-    let data = this.scene.cache.html.get(tablerosvgkey);
+    let data = this.scene.cache.html.get(TableroO.tablerosvgkey);
     this.setOrigin(0, 0).setHTML(data);
     this._resize();
     this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize);
