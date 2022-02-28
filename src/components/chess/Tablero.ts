@@ -25,7 +25,7 @@ class Tablero extends Array<Ficha> {
     Object.seal(this)
     // this.FEN = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
   }
-  
+
   length!: 64;
 
   negro = defaultEquipo;
@@ -48,36 +48,36 @@ class Tablero extends Array<Ficha> {
    * false = sigue negro
    */
   sigue = true
-/* 
-  public get FEN(): string {
-    return 'this._FEN';
-  }
-  public set FEN(v: string) {
-    const [positions, next, castling, paso, hm, fm] = v.split(' ');
-
-    let ancho = 0;
-
-    let obtenido = positions
-      .split('')
-      .reverse()
-      .join()
-      .split('/')
-      .map(line => line.split(''))
-    
-    let i = this.length;
-    
-    for (const line of obtenido) {
-      for (const char of line) {
-        if (char in Ficha.Type) {
-          this[i] = new Ficha(char as keyof typeof Ficha.Type)
-          i--;
-        } else if (/\d+/.test(char)) {
-          i -= parseInt(char);
+  /* 
+    public get FEN(): string {
+      return 'this._FEN';
+    }
+    public set FEN(v: string) {
+      const [positions, next, castling, paso, hm, fm] = v.split(' ');
+  
+      let ancho = 0;
+  
+      let obtenido = positions
+        .split('')
+        .reverse()
+        .join()
+        .split('/')
+        .map(line => line.split(''))
+      
+      let i = this.length;
+      
+      for (const line of obtenido) {
+        for (const char of line) {
+          if (char in Ficha.Type) {
+            this[i] = new Ficha(char as keyof typeof Ficha.Type)
+            i--;
+          } else if (/\d+/.test(char)) {
+            i -= parseInt(char);
+          }
         }
       }
-    }
-
-  } */
+  
+    } */
 
 }
 
@@ -93,11 +93,9 @@ export class TableroO extends GameO {
       this._resize();
     })
 
-    this.once(Phaser.GameObjects.Events.ADDED_TO_SCENE, () => {
-      this.scene.add.existing(this.tablero)
-      this.once(Phaser.GameObjects.Events.REMOVED_FROM_SCENE, () => {
-        this.tablero.removeFromDisplayList()
-      })
+
+    this.once(Phaser.GameObjects.Events.REMOVED_FROM_SCENE, () => {
+      this.tablero.removeFromDisplayList()
     })
 
   }
@@ -107,9 +105,13 @@ export class TableroO extends GameO {
     this.tablero.node.setAttribute('height', this.scene.scale.displaySize.height.toString())
   }
 
+  create(): void {
+    this.scene.add.dom(0, 0, 'object')
+  }
+
   type = 'Tablero';
   array = new Tablero();
-  tablero = this.scene.add.dom(0, 0, 'object')
+  tablero!: Phaser.GameObjects.DOMElement;
 
 }
 
