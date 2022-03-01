@@ -12,7 +12,9 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "serve": "webpack serve"
+    "serve": "webpack serve",
+    "start": "http-server \"./dist\"",
+    "replit-start": "webpack --watch && http-server \"./dist\""
   },
   "keywords": [],
   "description": "My webpack project",
@@ -37,6 +39,7 @@
     "workbox-webpack-plugin": "^6.5.0"
   },
   "dependencies": {
+    "http-server": "^14.1.0",
     "phaser": "^3.55.2"
   }
 }
