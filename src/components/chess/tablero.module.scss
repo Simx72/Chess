@@ -2,6 +2,18 @@
 
 div.tablero {
     @include m.no-margin;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+    >svg {
+        width: 100%;
+        height: 100%;
+    }
+    &.blur {
+        filter: blur(4px);
+    }
 }
 
 :root {

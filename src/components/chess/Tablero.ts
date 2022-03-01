@@ -3,6 +3,7 @@ import Scene from '../../scenes/default';
 import asset_tablero_svg from './tablero.svg';
 import styles from './tablero.module.scss';
 import { loadClasses } from '../styles';
+import GameO from '../GameO';
 
 interface Equipo {
   enrocar: {
@@ -82,22 +83,42 @@ class Tablero extends Array<Ficha> {
 }
 
 export const tableroNode = document.createElement('div');
+tableroNode.className = styles.tablero;
 tableroNode.innerHTML = loadClasses(asset_tablero_svg, styles);
+document.getElementById('app').appendChild(tableroNode);
 
-export class TableroO extends Phaser.GameObjects.DOMElement {
+export class TableroO extends GameO {
 
   constructor(scene: Scene) {
-    super(scene, 0, 0, tableroNode)
-    // console.log(svgtableroWithClasses)
-    this.setOrigin(0, 0)
-    // this._resize();
-    // this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
+    super(scene);
+    this._resize();
+    this.node.style.display = 'block';
+    this.blur = true;
+    this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize)
   }
 
-  node!: HTMLDivElement;
+  private _resize = () => {
+    this.node.style.top = this.scene.game.canvas.style.marginTop;
+    this.node.style.left = this.scene.game.canvas.style.marginLeft;
+    this.node.style.width = this.scene.game.canvas.style.width;
+    this.node.style.height = this.scene.game.canvas.style.height;
+  }
 
   type = 'Tablero';
-  array = new Tablero();
+  readonly array = new Tablero();
+  readonly node = tableroNode;
+
+  private _blur: boolean;
+  get blur() {
+    return this._blur;
+  }
+  set blur(v: boolean) {
+    if (v) 
+      this.node.classList.add(styles['blur'])
+    else
+      this.node.classList.remove(styles['blur'])
+    this._blur = v;
+  }
 
 }
 

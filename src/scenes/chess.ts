@@ -5,5 +5,6 @@ export default class Chess extends Scene {
   create(): void {
     super.create()
     this.tablero = new TableroO(this);
+    this.tablero.blur = false;
   }
 }
