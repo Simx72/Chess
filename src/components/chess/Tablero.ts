@@ -81,29 +81,24 @@ class Tablero extends Array<Ficha> {
 
 }
 
-
-let svgtableroWithClasses = loadClasses(asset_tablero_svg, styles);
+export const tableroNode = document.createElement('div');
+tableroNode.innerHTML = loadClasses(asset_tablero_svg, styles);
 
 export class TableroO extends Phaser.GameObjects.DOMElement {
 
   constructor(scene: Scene) {
-    super(scene, 0, 9, 'div')
+    super(scene, 0, 0, tableroNode)
     // console.log(svgtableroWithClasses)
     this.setOrigin(0, 0)
-      .setClassName(styles.tablero)
-      .setHTML(svgtableroWithClasses)
-    this._resize();
-    this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
+    for (const prop of ['width', 'height'] as ('width' | 'height')[]) {
+      (this.node.firstChild as HTMLElement).style[prop] = '800px';
+    }
+    // this._resize();
+    // this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
     this.scene.add.existing(this)
   }
 
   node!: HTMLDivElement;
-
-  private _resize() {
-    for (const prop of ['width', 'height'] as ('width' | 'height')[]) {
-      this.node.style[prop] = this.scene.scale.displaySize[prop] + 'px';
-    }
-  }
 
   type = 'Tablero';
   array = new Tablero();
