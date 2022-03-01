@@ -87,26 +87,11 @@ tableroNode.innerHTML = loadClasses(asset_tablero_svg, styles);
 export class TableroO extends Phaser.GameObjects.DOMElement {
 
   constructor(scene: Scene) {
-<<<<<<< HEAD
     super(scene, 0, 0, tableroNode)
     // console.log(svgtableroWithClasses)
     this.setOrigin(0, 0)
-    for (const prop of ['width', 'height'] as ('width' | 'height')[]) {
-      (this.node.firstChild as HTMLElement).style[prop] = '800px';
-    }
     // this._resize();
     // this.scene.scale.on(Phaser.Scale.Events.RESIZE, this._resize.bind(this));
-=======
-    super(scene, 0, 0, 'div')
-    // console.log(svgtableroWithClasses)
-    this.setOrigin(0, 0)
-      .setClassName(styles.tablero)
-      .setHTML(svgtableroWithClasses)
-    for (const prop of ["width", "height"] as ('width'|'height')[]) {
-      this.node.style[prop] = "800px";
-    }
->>>>>>> 7cf8d63e48e2bc377bf1ced5e60c7f195ec9d805
-    this.scene.add.existing(this)
   }
 
   node!: HTMLDivElement;
