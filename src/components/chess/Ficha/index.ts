@@ -106,8 +106,8 @@ export class FichaO extends Phaser.GameObjects.Sprite {
     }
   }
 
-  constructor(scene: Scene, ficha: FichaKey, color: Ficha.BN) {
-    super(scene, 0, 0, '');
+  constructor(scene: Scene, ficha: FichaKey, color: Ficha.BN, { x, y }:Optional<XY> = { x: 0, y: 0 }) {
+    super(scene, (x || 0) * 100, (y || 0) * 100, '');
     this.ficha = new Ficha(ficha);
     this.setTexture(`FICHA-${Ficha.BN[color]}${Ficha.Type[this.ficha.type]}`)
     scene.add.existing(this);
@@ -115,6 +115,11 @@ export class FichaO extends Phaser.GameObjects.Sprite {
 
   type = 'Ficha';
   ficha: Ficha;
+
+  setPosition(x?: number, y?: number, z?: number, w?: number): this {
+    super.setPosition(x * 100, y * 100, z, w);
+    return this;
+  }
 
 }
 

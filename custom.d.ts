@@ -34,3 +34,11 @@ interface SceneActualizable extends Actualizable {
   create(): void
 }
 
+interface XY<T extends (number | string) = number> {
+  x: T;
+  y: T;
+}
+
+type Optional<T> = {
+  [P in keyof T]?: T[P]
+}
