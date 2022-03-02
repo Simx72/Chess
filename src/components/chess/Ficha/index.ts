@@ -1,4 +1,4 @@
-import GameO from '../GameO';
+import GameO from '../../GameO';
 
 class Ficha {
   constructor(type: Ficha.Type | keyof typeof Ficha.Type) {
