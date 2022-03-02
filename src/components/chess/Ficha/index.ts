@@ -27,12 +27,16 @@ class Ficha {
   }
 
   private _type: Ficha.Type;
-  get type() {
+  get type(): Ficha.Type {
     return this._type;
   }
-  set type(ficha: FichaKey) {
+  set type(ficha: Ficha.Type) {
+    this._type = ficha;
+  }
+  setType(ficha: FichaKey) {
     this._type = (typeof ficha == 'string') ? Ficha.Type[ficha] : ficha;
   }
+
 }
 
 namespace Ficha {
@@ -96,15 +100,16 @@ export class FichaO extends Phaser.GameObjects.Sprite {
       const ficha = Ficha.Fichas[type];
       for (let color: Ficha.BN = 0; color < 2; color++)
         scene.load.svg(
-          'FICHA-' + Ficha.BN[color] + Ficha.Type[type],
+          `FICHA-${Ficha.BN[color]}${Ficha.Type[type]}`,
           ficha.svg[color]
         )
     }
   }
 
-  constructor(scene: Scene, ficha: FichaKey) {
+  constructor(scene: Scene, ficha: FichaKey, color: Ficha.BN) {
     super(scene, 0, 0, '');
     this.ficha = new Ficha(ficha);
+    this.setTexture(`FICHA-${Ficha.BN[color]}${Ficha.Type[this.ficha.type]}`)
   }
 
   type = 'Ficha';

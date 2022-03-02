@@ -8,7 +8,7 @@ class Game1 extends Chess {
 
   create(): void {
     super.create()
-    new FichaO(this, Ficha.Type.P)
+    new FichaO(this, Ficha.Type.P, Ficha.BN.B);
   }
 }
 
