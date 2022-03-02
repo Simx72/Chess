@@ -110,6 +110,7 @@ export class FichaO extends Phaser.GameObjects.Sprite {
     super(scene, 0, 0, '');
     this.ficha = new Ficha(ficha);
     this.setTexture(`FICHA-${Ficha.BN[color]}${Ficha.Type[this.ficha.type]}`)
+    scene.add.existing(this);
   }
 
   type = 'Ficha';
