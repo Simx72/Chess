@@ -7,7 +7,7 @@ class Game1 extends Chess {
 
   create(): void {
     super.create()
-    this.add.circle(0, 0, 400, 0x33DDBB)
+    this.add.circle(0, 0, 200, 0x33DDBB)
       .setOrigin(0)
   }
 }
