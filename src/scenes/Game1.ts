@@ -1,4 +1,5 @@
 import Chess from './chess';
+import Ficha, { FichaO } from '../components/chess/Ficha';
 
 class Game1 extends Chess {
   constructor() {
@@ -7,8 +8,7 @@ class Game1 extends Chess {
 
   create(): void {
     super.create()
-    this.add.circle(0, 0, 200, 0x33DDBB)
-      .setOrigin(0)
+    new FichaO(this, Ficha.Type.P)
   }
 }
 
