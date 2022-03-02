@@ -23,7 +23,7 @@ type FichaKey = Ficha.Type | keyof typeof Ficha.Type;
 
 class Ficha {
   constructor(type: FichaKey) {
-    this._type = (typeof type == 'string')? Ficha.Type[type] : type;
+    this._type = (typeof type == 'string') ? Ficha.Type[type] : type;
   }
 
   private _type: Ficha.Type;
@@ -31,7 +31,7 @@ class Ficha {
     return this._type;
   }
   set type(ficha: FichaKey) {
-    this._type = (typeof ficha == 'string')? Ficha.Type[ficha] : ficha;
+    this._type = (typeof ficha == 'string') ? Ficha.Type[ficha] : ficha;
   }
 }
 
@@ -41,13 +41,13 @@ namespace Ficha {
    */
   export enum Type { K, Q, B, H, R, P }
 
-  
+
   /**
    * Array con dos valores refiriendose
    * a uno blano y el otro negro como
    * el ying y el yang xd
    */
-  interface BN<T> {
+  interface TypeBN<T> {
     /**
      * BLANCO
      */
@@ -58,15 +58,17 @@ namespace Ficha {
      */
     1: T;
   }
-  
+
+  export enum BN {B, N}
+
   /**
    * Contiene los datos de una ficha
    */
   export interface DatosdeFicha {
-    svg: BN<string>
+    svg: TypeBN<string>
   }
 
-  export const Fichas: { [P in Ficha.Type]: DatosdeFicha } = [
+  export const Fichas: { [P in Ficha.Type]: DatosdeFicha } & { length: number; } = [
     /* Ficha.Type.K */{
       svg: [asset_WK_svg, asset_BK_svg]
     },
@@ -89,6 +91,17 @@ namespace Ficha {
 }
 
 export class FichaO extends Phaser.GameObjects.Sprite {
+  static preload(scene: Scene) {
+    for (let type: Ficha.Type = 0; type < Ficha.Fichas.length; type++) {
+      const ficha = Ficha.Fichas[type];
+      for (let color: Ficha.BN = 0; color < 2; color++)
+        scene.load.svg(
+          'FICHA-' + Ficha.BN[color] + Ficha.Type[type],
+          ficha.svg[color]
+        )
+    }
+  }
+
   constructor(scene: Scene, ficha: FichaKey) {
     super(scene, 0, 0, '');
     this.ficha = new Ficha(ficha);
