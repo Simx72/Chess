@@ -8,7 +8,8 @@ class Game1 extends Chess {
 
   create(): void {
     super.create()
-    new FichaO(this, Ficha.Type.P, Ficha.BN.B, { x: 4, y: 3 });
+    let ficha = new FichaO(this, Ficha.Type.P, Ficha.BN.B);
+    ficha.setPosition(4, 4)
   }
 }
 
