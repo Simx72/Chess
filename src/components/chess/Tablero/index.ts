@@ -1,9 +1,9 @@
-import Ficha from './Ficha';
-import Scene from '../../scenes/default';
+import Ficha from '../Ficha';
+import Scene from '../../../scenes/default';
 import asset_tablero_svg from './tablero.svg';
 import styles from './tablero.module.scss';
-import { loadClasses } from '../styles';
-import GameO from '../GameO';
+import { loadClasses } from '../../styles';
+import GameO from '../../GameO';
 
 interface Equipo {
   enrocar: {
